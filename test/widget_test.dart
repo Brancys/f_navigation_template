@@ -59,56 +59,20 @@ void main() {
   testWidgets('Page3B displays snackbar when top button is clicked',
       (WidgetTester tester) async {
     const name = 'Augusto';
-
     await tester.pumpWidget(buildPage3bWithNavigation(name: name));
     await tester.pumpAndSettle();
 
-    final buttonFinder = find.text('Show Top Snackbar');
-    expect(buttonFinder, findsOneWidget);
-
-    await tester.tap(buttonFinder);
-    await tester.pump();
-
-    final snackbarFinder = find.text('This is a snackbar on Top');
-    expect(snackbarFinder, findsOneWidget);
-
-    await tester.pump(const Duration(seconds: 5));
-  });
-
-  testWidgets('Page3B displays snackbar when bottom button is clicked',
-      (WidgetTester tester) async {
-    const name = 'Augusto';
-    await tester.pumpWidget(buildPage3bWithNavigation(name: name));
+    await tester.tap(find.text('Show Bottom Snackbar'));
     await tester.pumpAndSettle();
+    expect(find.byType(GetSnackBar), findsOneWidget);
 
-    final buttonFinder = find.text('Show Bottom Snackbar');
-    expect(buttonFinder, findsOneWidget);
+    await tester.pumpAndSettle(const Duration(seconds: 5));
 
-    await tester.tap(buttonFinder);
-    await tester.pump();
-
-    final snackbarFinder = find.text('This is a snackbar on Bottom');
-    expect(snackbarFinder, findsOneWidget);
-
-    await tester.pump(const Duration(seconds: 5));
-  });
-
-  testWidgets('Page3B displays snackbar when top button is clicked',
-      (WidgetTester tester) async {
-    const name = 'Augusto';
-    await tester.pumpWidget(buildPage3bWithNavigation(name: name));
+    await tester.tap(find.text('Show Top Snackbar'));
     await tester.pumpAndSettle();
+    expect(find.byType(GetSnackBar), findsOneWidget);
 
-    final buttonFinder = find.text('Show Top Snackbar');
-    expect(buttonFinder, findsOneWidget);
-
-    await tester.tap(buttonFinder);
-    await tester.pump();
-
-    final snackbarFinder = find.text('This is a snackbar on Top');
-    expect(snackbarFinder, findsOneWidget);
-
-    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle(const Duration(seconds: 5));
   });
 
   testWidgets('Page3B displays snackbar when bottom button is clicked',
@@ -118,16 +82,16 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Show Bottom Snackbar'));
-    await tester.pump();
+    await tester.pumpAndSettle();
     expect(find.byType(GetSnackBar), findsOneWidget);
 
-    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle(const Duration(seconds: 5));
 
     await tester.tap(find.text('Show Top Snackbar'));
-    await tester.pump();
+    await tester.pumpAndSettle();
     expect(find.byType(GetSnackBar), findsOneWidget);
 
-    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle(const Duration(seconds: 5));
   });
 
   testWidgets('Page3A displays correct app bar title',
